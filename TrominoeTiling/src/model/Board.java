@@ -3,12 +3,12 @@ package model;
 public class Board 
 {
    int[][] myBoard;
-   int boardSize = 0;
+   int myBoardSize = 0;
    DeficientSquare myDefSquare;
    
    public Board( int boardSize )
    {
-	   setBoardSize( boardSize );
+	  setBoardSize( boardSize );
    }
    
    public void rotateBoard()
@@ -18,12 +18,12 @@ public class Board
    
    public void setBoardSize( int size )
    {
-	   boardSize = size;
-	   myBoard = new int[boardSize][boardSize];
+	   myBoardSize = size;
+	   myBoard = new int[myBoardSize][myBoardSize];
    }
    
    public int getBoardSize()
    {
-	   return boardSize;
+	   return myBoardSize;
    }
 }

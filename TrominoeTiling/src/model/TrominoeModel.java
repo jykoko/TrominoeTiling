@@ -21,8 +21,8 @@ public class TrominoeModel
 	   }
 	   else
 	   {
-		   int n = myBoard.getBoardSize() / 2;
-		   myBoard.setBoardSize(n);
+		  // int n = myBoard.getBoardSize() / 2;
+		  // add recursive calls for each quadrant
 	   }
    }
 }
