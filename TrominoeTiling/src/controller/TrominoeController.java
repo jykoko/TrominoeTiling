@@ -1,6 +1,6 @@
 package controller;
-import javax.swing.JOptionPane;
 
+import javax.swing.JOptionPane;
 import model.Board;
 import model.TrominoeModel;
 import view.TrominoeView;

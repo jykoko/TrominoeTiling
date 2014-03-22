@@ -1,9 +1,7 @@
 package view;
 
 import java.awt.Container;
-
 import javax.swing.JFrame;
-
 import controller.TrominoeController;
 
 public class TrominoeView extends JFrame 
