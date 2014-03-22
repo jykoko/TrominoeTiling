@@ -1,5 +1,6 @@
 package view;
 
-public class TrominoeView {
-
+public class TrominoeView 
+{
+  
 }
