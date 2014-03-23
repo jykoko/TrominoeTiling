@@ -24,6 +24,8 @@ public class TrominoeView extends JFrame
 	   myMainView.setTitle("Tiling With Trominoes");
 	   myMainView.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	   myContainer = myMainView.getContentPane();
+	   
+	   myMainView.setVisible(true);
    }
    
    public void killCurrentWindow() 

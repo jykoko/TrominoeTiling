@@ -1,24 +1,22 @@
 package model;
 
+import java.util.Random;
+
 public class DeficientSquare 
 {
   private int myXLoc;
   private int myYLoc;
+  private Random rand;
   
-  public DeficientSquare( int xCord, int yCord )
+  public DeficientSquare()
   {
-	  myXLoc = xCord;
-	  myYLoc = yCord;
+	 rand = new Random();
   }
   
-  public void setXCoordinate( int coordinate )
+  public void generateCoordinates()
   {
-	  myXLoc = coordinate;
-  }
-  
-  public void setYCoordinate( int coordinate )
-  {
-	  myYLoc = coordinate;
+	  myXLoc = rand.nextInt(2);
+	  myYLoc = rand.nextInt(2);
   }
   
   public int getXCoordinate()

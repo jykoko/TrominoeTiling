@@ -2,8 +2,8 @@ package model;
 
 public class TrominoeModel 
 {
-   Board myBoard;
-   Board myDisplayBoard;
+   private Board myBoard;
+   private Board myDisplayBoard;
    
    public TrominoeModel( Board board )
    {
@@ -15,7 +15,8 @@ public class TrominoeModel
    {
 	   if( gridSize == 2 )
 	   {
-		   //myBoard.getDefSquare().getXLoc(), myBoard.getDefSquare().getYLoc();
+		    int xLoc = myBoard.getDeficientSquare().getXCoordinate();
+            int yLoc = myBoard.getDeficientSquare().getYCoordinate();
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
 	   }
