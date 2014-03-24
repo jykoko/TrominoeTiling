@@ -26,4 +26,9 @@ public class TrominoeModel
 		  // add recursive calls for each quadrant
 	   }
    }
+   
+   public Board getBoard()
+   {
+	   return myBoard;
+   }
 }

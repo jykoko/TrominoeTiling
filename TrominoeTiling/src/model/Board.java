@@ -35,9 +35,9 @@ public class Board
    {
 	   for( int i = 0; i < myBoard.length; i++ ) 
 	   {
-		  for ( int j = 0; j < myBoard[i].length; j++ ) 
+		  for( int j = 0; j < myBoard[i].length; j++ ) 
 		  {
-		        myBoard[i][j] = 0;
+		      myBoard[i][j] = 0;
 		  }
 	   }
    }
