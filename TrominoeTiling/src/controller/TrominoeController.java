@@ -19,6 +19,9 @@ public class TrominoeController
        myModel = new TrominoeModel(board);
  	   myView = new TrominoeView(this);
  	   System.out.println("GUI started, program is running.");
+ 	   
+ 	   myModel.tileBoard();
+ 	   myModel.getBoard().printBoard();
    }
    
    public void resetBoardSize()

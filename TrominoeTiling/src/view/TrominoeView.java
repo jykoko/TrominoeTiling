@@ -2,12 +2,13 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import controller.TrominoeController;
 
@@ -44,22 +45,23 @@ public class TrominoeView extends JFrame
 	   myBoardPanel.setBackground(Color.WHITE);
 	   myBoardPanel.setLayout(new GridLayout(myController.getBoardSize(),
 			                                 myController.getBoardSize(),
-			                                 myController.getBoardSize(),
-			                                 myController.getBoardSize() ));
+			                                 0,0));
 	   myContainer.add(myBoardPanel);
 	   
 	   JButton[][] myBoardButtons = new JButton[myController.getBoardSize()]
 			   								   [myController.getBoardSize()];
-		 
+	  
+	   LineBorder lnBorder = new LineBorder(Color.black, 1);
 	   for(int i = 0; i < myBoardButtons.length; i++)
 	   {
 		   for(int j = 0 ; j < myBoardButtons[i].length; j++)
 		   {
 			   myBoardButtons[i][j] = new JButton();
-			   myBoardButtons[i][j].setText("");
-			   myBoardButtons[i][j].setFont(new Font("Georgia", Font.BOLD, 20));
-			   myBoardButtons[i][j].setSize(20, 20);
 			   myBoardButtons[i][j].setEnabled(false);
+			   myBoardButtons[i][j].setMargin(new Insets(0,0,0,0));
+			   myBoardButtons[i][j].setContentAreaFilled(false);
+			   myBoardButtons[i][j].setFocusPainted(false);
+			   myBoardButtons[i][j].setBorder( lnBorder );
 			   myBoardPanel.add(myBoardButtons[i][j]);
 			 }
 		}

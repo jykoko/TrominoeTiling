@@ -19,6 +19,12 @@ public class DeficientSquare
 	 myYLoc = myRand.nextInt(2);
   }
   
+  public void setCoorinates( int x, int y )
+  {
+	  myXLoc = x;
+	  myYLoc = y;
+  }
+  
   public int getXCoordinate()
   {
 	 return myXLoc;

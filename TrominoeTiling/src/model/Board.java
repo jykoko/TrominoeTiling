@@ -13,17 +13,17 @@ public class Board
 	  clearBoard();
    }
    
-   public void rotateBoard()
-   {
-	   
-   }
-   
    /*
     * Private because only accessed from within this class. 
     */
    private void setNewDeficientSquare()
    {
 	   myDefSquare.generateCoordinates();
+   }
+   
+   public void setDefSquare( int x, int y )
+   {
+ 	   myDefSquare.setCoorinates(x, y);
    }
    
    public DeficientSquare getDeficientSquare()
@@ -42,6 +42,18 @@ public class Board
 	   }
    }
    
+   public void printBoard()
+   {
+	   for( int i = 0; i < myBoard.length; i++ ) 
+	   {
+		  for( int j = 0; j < myBoard[i].length; j++ ) 
+		  {
+		      System.out.print( myBoard[i][j] + "\t");
+		  }
+		  System.out.println();
+	   } 
+   }
+   
    public void setBoardSize( int size )
    {
 	   myBoardSize = size;
@@ -51,5 +63,10 @@ public class Board
    public int getBoardSize()
    {
 	   return myBoardSize;
+   }
+   
+   public int[][] getBoard()
+   {
+	   return myBoard;
    }
 }

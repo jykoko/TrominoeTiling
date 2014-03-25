@@ -4,6 +4,9 @@ public class TrominoeModel
 {
    private Board myBoard;
    private Board myDisplayBoard;
+   private int myNumbIterations, myXLoc, myYLoc;
+   private static final int DEFICIENT = -1, FILLED = 1, EMPTY = 0;
+   
    
    public TrominoeModel( Board board )
    {
@@ -11,19 +14,80 @@ public class TrominoeModel
 	   myDisplayBoard = myBoard;
    }
    
-   public void tile( int gridSize )
+   public void tileBoard()
+   {
+	  tile( myBoard.getBoardSize(), 0, 0 );
+   }
+   
+   private void tile( int gridSize, int originX, int originY )
    {
 	   if( gridSize == 2 )
-	   {
-		    int xLoc = myBoard.getDeficientSquare().getXCoordinate();
-            int yLoc = myBoard.getDeficientSquare().getYCoordinate();
+	   {    
+            for( int i = 0; i < gridSize; i++ )
+            {
+            	for( int j = 0; j < gridSize; j++ )
+                {
+                	if( myBoard.getBoard()[i][j] != DEFICIENT )
+                	{
+                		myBoard.getBoard()[i][j] = FILLED;
+                	}
+                }
+            }
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
 	   }
 	   else
 	   {
-		  // int n = myBoard.getBoardSize() / 2;
-		  // add recursive calls for each quadrant
+		   findDefSquare(originX, originY);
+		   int halfOfBoardLength = myBoard.getBoardSize() / 2;
+		   
+           if( myXLoc < originX + halfOfBoardLength && 
+        	   myYLoc < originY + halfOfBoardLength)
+           {
+        	   tile(halfOfBoardLength, originX, originY);
+        	   
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
+        	   
+        	   tile(halfOfBoardLength, originX, originY + halfOfBoardLength);
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY);
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
+           }
+           else if( myXLoc < originX + halfOfBoardLength && 
+            	    myYLoc >= originY + halfOfBoardLength)
+           {
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
+           }
+           else if( myXLoc >= originX + halfOfBoardLength && 
+            	    myYLoc < originY + halfOfBoardLength)
+           {
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
+           }
+           else
+           {
+        	   
+           }
+	   }
+   }
+   
+   private void findDefSquare( int originX, int originY )
+   {
+	   myNumbIterations++;
+	   if(myNumbIterations <= 1)
+	   {
+		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
+		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
+	   }
+	   else
+	   {
+		   myBoard.setDefSquare(originX, originY);
+		   myXLoc = myBoard.getDeficientSquare().getXCoordinate();
+		   myYLoc = myBoard.getDeficientSquare().getYCoordinate();
 	   }
    }
    
