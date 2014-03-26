@@ -1,5 +1,4 @@
 <h2>TrominoeTiling - Stetson University CS 211 (Discrete Structures)</h2>
-====================================================================
 
 <b><em>Authors: Jacob Koko & Sebastian Florez</em></b>
 
