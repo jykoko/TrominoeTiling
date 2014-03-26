@@ -41,8 +41,8 @@ public class TrominoeModel
 		   findDefSquare(originX, originY);
 		   int halfOfBoardLength = myBoard.getBoardSize() / 2;
 		   
-           if( myXLoc < originX + halfOfBoardLength && 
-        	   myYLoc < originY + halfOfBoardLength)
+		   if( myXLoc < originX + halfOfBoardLength && 
+        	   myYLoc < originY + halfOfBoardLength) //upper left
            {
         	   tile(halfOfBoardLength, originX, originY);
         	   
@@ -55,22 +55,22 @@ public class TrominoeModel
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
            }
            else if( myXLoc < originX + halfOfBoardLength && 
-            	    myYLoc >= originY + halfOfBoardLength)
+            	    myYLoc >= originY + halfOfBoardLength) //lower left
            {
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
-        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength - 1] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED;
            }
            else if( myXLoc >= originX + halfOfBoardLength && 
-            	    myYLoc < originY + halfOfBoardLength)
+            	    myYLoc < originY + halfOfBoardLength) // upper right
            {
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
-        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
+        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
            }
-           else
+           else //lower right
            {
-        	   
+        	
            }
 	   }
    }
@@ -78,16 +78,16 @@ public class TrominoeModel
    private void findDefSquare( int originX, int originY )
    {
 	   myNumbIterations++;
-	   if(myNumbIterations <= 1)
+	   if(myNumbIterations < 1)
 	   {
 		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
 		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
 	   }
 	   else
 	   {
-		   myBoard.setDefSquare(originX, originY);
-		   myXLoc = myBoard.getDeficientSquare().getXCoordinate();
-		   myYLoc = myBoard.getDeficientSquare().getYCoordinate();
+		  myBoard.setDefSquare(originX, originY);
+		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
+		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
 	   }
    }
    
