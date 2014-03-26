@@ -1,5 +1,7 @@
 package model;
 
+//Sebastian can write to this
+
 public class Board 
 {
    private int[][] myBoard;
