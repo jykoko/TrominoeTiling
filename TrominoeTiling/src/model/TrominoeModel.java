@@ -3,14 +3,13 @@ package model;
 public class TrominoeModel 
 {
    private Board myBoard;
-   private Board myDisplayBoard;
+   private int[][] myDisplayBoard = null;
    private int myNumbIterations, myXLoc, myYLoc;
    private static final int DEFICIENT = -1, FILLED = 1, EMPTY = 0;
    
    public TrominoeModel( Board board )
    {
 	   myBoard = board;
-	   myDisplayBoard = myBoard;
    }
    
    public void tileBoard()
@@ -33,7 +32,7 @@ public class TrominoeModel
                 }
              }
             
-            myDisplayBoard = myBoard;
+            myDisplayBoard = myBoard.getBoard();
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
 	   }
