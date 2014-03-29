@@ -7,7 +7,6 @@ public class TrominoeModel
    private int myNumbIterations, myXLoc, myYLoc;
    private static final int DEFICIENT = -1, FILLED = 1, EMPTY = 0;
    
-   
    public TrominoeModel( Board board )
    {
 	   myBoard = board;
@@ -23,16 +22,18 @@ public class TrominoeModel
    {
 	   if( gridSize == 2 )
 	   {    
-            for( int i = 0; i < gridSize; i++ )
+            for( int i = 0; i < myBoard.getBoard().length; i++ )
             {
-            	for( int j = 0; j < gridSize; j++ )
+            	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
                 {
                 	if( myBoard.getBoard()[i][j] != DEFICIENT )
                 	{
                 		myBoard.getBoard()[i][j] = FILLED;
                 	}
                 }
-            }
+             }
+            
+            myDisplayBoard = myBoard;
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
 	   }
@@ -70,7 +71,7 @@ public class TrominoeModel
            }
            else //lower right
            {
-        	
+        	  
            }
 	   }
    }
@@ -78,7 +79,7 @@ public class TrominoeModel
    private void findDefSquare( int originX, int originY )
    {
 	   myNumbIterations++;
-	   if(myNumbIterations < 1)
+	   if(myNumbIterations <= 1)
 	   {
 		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
 		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
