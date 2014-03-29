@@ -39,6 +39,8 @@ public class TrominoeModel
 	   else
 	   {
 		   findDefSquare(originX, originY);
+		   originX = 0;
+		   originY = 0;
 		   int halfOfBoardLength = myBoard.getBoardSize() / 2;
 		   
 		   if( myXLoc < originX + halfOfBoardLength && 
@@ -50,29 +52,53 @@ public class TrominoeModel
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
         	   
-        	   tile(halfOfBoardLength, originX, originY + halfOfBoardLength);
-        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY);
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength - 1);
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength - 1, originY + halfOfBoardLength);
            }
            else if( myXLoc < originX + halfOfBoardLength && 
             	    myYLoc >= originY + halfOfBoardLength) //lower left
            {
+        	   //recursively tiling lower left quad
+        	   tile( halfOfBoardLength, originX, originY + halfOfBoardLength);
+        	   
+        	   //set center tromino
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength - 1] = FILLED;
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED;
+        	   
+        	   //recursively tile the rest
+        	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength - 1);
+        	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
+        	   tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength );
            }
            else if( myXLoc >= originX + halfOfBoardLength && 
             	    myYLoc < originY + halfOfBoardLength) // upper right
            {
+        	  
+        	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY );
+        	   
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
-        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength -1 ] = FILLED;
+        	  
+        	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
+       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength);
+       	      tile( halfOfBoardLength, originX + halfOfBoardLength - 1, originY + halfOfBoardLength - 1);
            }
            else //lower right
            {
+        	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
         	  
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED;
+        	  
+        	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
+       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
+       	      tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength );
            }
-	   }
+	   	}
    }
    
    private void findDefSquare( int originX, int originY )
