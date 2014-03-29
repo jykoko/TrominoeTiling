@@ -4,8 +4,9 @@ public class TrominoeModel
 {
    private Board myBoard;
    private int[][] myDisplayBoard = null;
-   private int myNumbIterations, myXLoc, myYLoc;
-   private static final int DEFICIENT = -1, FILLED = 1, EMPTY = 0;
+   private int myNumbIterations, myXLoc, myYLoc, filled =1;
+   private static final int DEFICIENT = -1, EMPTY = 0;
+   
    
    public TrominoeModel( Board board )
    {
@@ -19,6 +20,7 @@ public class TrominoeModel
    
    private void tile( int gridSize, int originX, int originY )
    {
+	   
 	   if( gridSize == 2 )
 	   {    
             for( int i = 0; i < myBoard.getBoard().length; i++ )
@@ -27,11 +29,11 @@ public class TrominoeModel
                 {
                 	if( myBoard.getBoard()[i][j] != DEFICIENT )
                 	{
-                		myBoard.getBoard()[i][j] = FILLED;
+                		myBoard.getBoard()[i][j] = filled;
                 	}
                 }
              }
-            
+            filled++;
             myDisplayBoard = myBoard.getBoard();
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
@@ -48,9 +50,11 @@ public class TrominoeModel
            {
         	   tile(halfOfBoardLength, originX, originY);
         	   
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
-        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = filled;
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
+        	   
+        	   filled++;
         	   
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength - 1);
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
@@ -63,9 +67,11 @@ public class TrominoeModel
         	   tile( halfOfBoardLength, originX, originY + halfOfBoardLength);
         	   
         	   //set center tromino
-        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength - 1] = FILLED;
-        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
-        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED;
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength - 1] = filled;
+        	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
+        	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
+        	   
+        	   filled++;
         	   
         	   //recursively tile the rest
         	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength - 1);
@@ -78,9 +84,11 @@ public class TrominoeModel
         	  
         	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY );
         	   
-        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
-        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED; 
-        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength -1 ] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = filled;
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
+        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength -1 ] = filled;
+        	  
+        	  filled++;
         	  
         	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength);
@@ -90,9 +98,11 @@ public class TrominoeModel
            {
         	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
         	  
-        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = FILLED;
-        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = FILLED; 
-        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = FILLED;
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength - 1] = filled;
+        	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
+        	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
+        	  
+        	  filled++;
         	  
         	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
