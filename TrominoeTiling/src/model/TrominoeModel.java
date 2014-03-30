@@ -23,9 +23,9 @@ public class TrominoeModel
    {
 	   if( gridSize == 2 )
 	   {    
-            for( int i = 0; i < myBoard.getBoard().length; i++ )
+            for( int i = 0; i < originX + gridSize; i++ )
             {
-            	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
+            	for( int j = 0; j < originY + gridSize; j++ )
                 {
 
                 	if( myBoard.getBoard()[i][j] == 0 )
