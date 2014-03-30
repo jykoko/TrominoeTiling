@@ -61,7 +61,7 @@ public class Board
 	   myBoard = new int[myBoardSize][myBoardSize];
    }
    
-   public int getBoardSize()
+   public int getOriginalBoardSize()
    {
 	   return myBoardSize;
    }

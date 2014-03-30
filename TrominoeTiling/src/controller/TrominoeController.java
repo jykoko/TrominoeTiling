@@ -32,6 +32,6 @@ public class TrominoeController
    
    public int getBoardSize()
    {
-	   return myModel.getBoard().getBoardSize();
+	   return myModel.getBoard().getOriginalBoardSize();
    }
 }

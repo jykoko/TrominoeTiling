@@ -4,7 +4,7 @@ public class TrominoeModel
 {
    private Board myBoard;
    private int[][] myDisplayBoard = null;
-   private int myNumbIterations, myXLoc, myYLoc, filled =1;
+   private int myNumbIterations, myXLoc, myYLoc,filled = 1, halfOfBoardLength = 0;
    private static final int DEFICIENT = -1, EMPTY = 0;
    
    
@@ -15,12 +15,11 @@ public class TrominoeModel
    
    public void tileBoard()
    {
-	  tile( myBoard.getBoardSize(), 0, 0 );
+	  tile( myBoard.getOriginalBoardSize(), 0, 0 );
    }
    
    private void tile( int gridSize, int originX, int originY )
    {
-	   
 	   if( gridSize == 2 )
 	   {    
             for( int i = 0; i < myBoard.getBoard().length; i++ )
@@ -34,6 +33,7 @@ public class TrominoeModel
                 }
              }
             filled++;
+            System.out.println("filled: " + filled);
             myDisplayBoard = myBoard.getBoard();
 		   //loop thru board, checking for defSquare location, otherwise fill
 		   //set origBoard to solution for display in GUI via controller
@@ -43,7 +43,7 @@ public class TrominoeModel
 		   findDefSquare(originX, originY);
 		   originX = 0;
 		   originY = 0;
-		   int halfOfBoardLength = myBoard.getBoardSize() / 2;
+		   halfOfBoardLength = gridSize / 2;
 		   
 		   if( myXLoc < originX + halfOfBoardLength && 
         	   myYLoc < originY + halfOfBoardLength) //upper left
