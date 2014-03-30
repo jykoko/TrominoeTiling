@@ -4,12 +4,14 @@ public class TrominoeModel
 {
    private Board myBoard;
    private int[][] myDisplayBoard = null;
-   private int myNumbIterations, myXLoc, myYLoc, filled = 1;
+   private int myNumbIterations, myXLoc, myYLoc,filled = 1, halfOfBoardLength = 0;
    private static final int DEFICIENT = -1, EMPTY = 0;
    
    public TrominoeModel( Board board )
    {
 	   myBoard = board;
+	   myBoard.getBoard()[myBoard.getDeficientSquare().getXCoordinate()]
+			   			 [myBoard.getDeficientSquare().getYCoordinate()] = -1;
    }
    
    public void tileBoard()
@@ -25,7 +27,8 @@ public class TrominoeModel
             {
             	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
                 {
-                	if( myBoard.getBoard()[i][j] == EMPTY )
+
+                	if( myBoard.getBoard()[i][j] == 0 )
                 	{
                 		myBoard.getBoard()[i][j] = filled;
                 	}
@@ -36,11 +39,9 @@ public class TrominoeModel
 	   }
 	   else
 	   {
-		   findDefSquare(originX, originY);
-		   originX = 0;
-		   originY = 0;
-		   int halfOfBoardLength = gridSize / 2;
-		   
+		   findDefSquare();
+		   halfOfBoardLength = gridSize / 2;
+		   System.out.println( " half of board length: " + halfOfBoardLength);
 		   if( myXLoc < originX + halfOfBoardLength && 
         	   myYLoc < originY + halfOfBoardLength) //upper left
            {
@@ -52,9 +53,9 @@ public class TrominoeModel
         	   
         	   filled++;
         	   
-        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength - 1);
-        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
-        	   tile(halfOfBoardLength, originX + halfOfBoardLength - 1, originY + halfOfBoardLength);
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY); //upper right
+        	   tile(halfOfBoardLength, originX , originY + halfOfBoardLength); //lower left
+        	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength); // lower right
            }
            else if( myXLoc < originX + halfOfBoardLength && 
             	    myYLoc >= originY + halfOfBoardLength) //lower left
@@ -67,9 +68,11 @@ public class TrominoeModel
         	   
         	   filled++;
         	   
-           	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength - 1);
-        	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
-        	   tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength );
+        	   //recursively tile the rest
+        	   tile( halfOfBoardLength, originX + halfOfBoardLength, originY); // upper right
+        	   tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength); // lower right
+        	   tile( halfOfBoardLength, originX, originY); // upper left
+
            }
            else if( myXLoc >= originX + halfOfBoardLength && 
             	    myYLoc < originY + halfOfBoardLength) // upper right
@@ -82,9 +85,11 @@ public class TrominoeModel
         	  
         	  filled++;
         	  
-        	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
-       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength);
-       	      tile( halfOfBoardLength, originX + halfOfBoardLength - 1, originY + halfOfBoardLength - 1);
+
+        	  tile( halfOfBoardLength, originX, originY); // upper left
+       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength); // lower right 
+       	      tile( halfOfBoardLength, originX , originY + halfOfBoardLength); // lower left
+
            }
            else //lower right
            {
@@ -96,29 +101,25 @@ public class TrominoeModel
         	  
         	  filled++;
         	  
-        	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
-       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
-       	      tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength );
+        	  tile( halfOfBoardLength, originX, originY); // upper left
+       	   	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY); // upper right
+       	      tile( halfOfBoardLength, originX , originY + halfOfBoardLength ); // lower left
            }
 	   	}
    }
    
-   private void findDefSquare( int originX, int originY )
+   private void findDefSquare()
    {
-	   myNumbIterations++;
-	   if(myNumbIterations <= 1)
-	   {
-		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
-		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
-		  System.out.println("xloc: " + myXLoc + ",  yloc" + myYLoc);
-	   }
-	   else
-	   {
-		  myBoard.setDefSquare(originX, originY);
-		  myXLoc = myBoard.getDeficientSquare().getXCoordinate();
-		  myYLoc = myBoard.getDeficientSquare().getYCoordinate();
-		  System.out.println("[in else] xloc: " + myXLoc + ",  yloc" + myYLoc);
-	   }
+	   for( int i = 0; i < myBoard.getBoard().length; i++ )
+       {
+       	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
+           {
+           	if( myBoard.getBoard()[i][j] != 0 )
+           	{
+           		myBoard.setDefSquare(i, j);
+           	}
+           }
+        }
    }
    
    public Board getBoard()
