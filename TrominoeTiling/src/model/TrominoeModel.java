@@ -43,7 +43,7 @@ public class TrominoeModel
 		   findDefSquare(originX, originY);
 		   originX = 0;
 		   originY = 0;
-		   int halfOfBoardLength = myBoard.getBoardSize() / 2;
+		   int halfOfBoardLength = gridSize / 2;
 		   
 		   if( myXLoc < originX + halfOfBoardLength && 
         	   myYLoc < originY + halfOfBoardLength) //upper left
@@ -54,7 +54,7 @@ public class TrominoeModel
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	   
-        	   filled++;
+        	 
         	   
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength - 1);
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength);
@@ -71,7 +71,7 @@ public class TrominoeModel
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
         	   
-        	   filled++;
+        	  
         	   
         	   //recursively tile the rest
         	   tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength - 1);
@@ -88,7 +88,7 @@ public class TrominoeModel
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
         	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength -1 ] = filled;
         	  
-        	  filled++;
+        	  
         	  
         	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength);
@@ -102,7 +102,7 @@ public class TrominoeModel
         	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
         	  
-        	  filled++;
+        	 
         	  
         	  tile( halfOfBoardLength, originX + halfOfBoardLength , originY + halfOfBoardLength - 1);
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength - 1 , originY + halfOfBoardLength);
