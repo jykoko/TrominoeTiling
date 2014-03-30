@@ -23,9 +23,9 @@ public class TrominoeModel
    {
 	   if( gridSize == 2 )
 	   {    
-            for( int i = 0; i < myBoard.getBoard().length; i++ )
+            for( int i = 0; i < originX + gridSize; i++ )
             {
-            	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
+            	for( int j = 0; j < originY + gridSize; j++ )
                 {
 
                 	if( myBoard.getBoard()[i][j] == 0 )
@@ -34,7 +34,7 @@ public class TrominoeModel
                 	}
                 }
              }
-            filled++;
+            incrementFilled();
             myDisplayBoard = myBoard.getBoard();
 	   }
 	   else
@@ -42,6 +42,7 @@ public class TrominoeModel
 		   findDefSquare();
 		   halfOfBoardLength = gridSize / 2;
 		   System.out.println( " half of board length: " + halfOfBoardLength);
+		   
 		   if( myXLoc < originX + halfOfBoardLength && 
         	   myYLoc < originY + halfOfBoardLength) //upper left
            {
@@ -51,7 +52,7 @@ public class TrominoeModel
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	   
-        	   filled++;
+        	   incrementFilled();
         	   
         	   tile(halfOfBoardLength, originX + halfOfBoardLength, originY); //upper right
         	   tile(halfOfBoardLength, originX , originY + halfOfBoardLength); //lower left
@@ -66,7 +67,7 @@ public class TrominoeModel
         	   myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	   myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
         	   
-        	   filled++;
+        	   incrementFilled();
         	   
         	   //recursively tile the rest
         	   tile( halfOfBoardLength, originX + halfOfBoardLength, originY); // upper right
@@ -83,9 +84,8 @@ public class TrominoeModel
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled; 
         	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength -1 ] = filled;
         	  
-        	  filled++;
+        	  incrementFilled();
         	  
-
         	  tile( halfOfBoardLength, originX, originY); // upper left
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength); // lower right 
        	      tile( halfOfBoardLength, originX , originY + halfOfBoardLength); // lower left
@@ -99,7 +99,7 @@ public class TrominoeModel
         	  myBoard.getBoard()[originX + halfOfBoardLength - 1][originY + halfOfBoardLength] = filled; 
         	  myBoard.getBoard()[originX + halfOfBoardLength][originY + halfOfBoardLength] = filled;
         	  
-        	  filled++;
+        	  incrementFilled();
         	  
         	  tile( halfOfBoardLength, originX, originY); // upper left
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY); // upper right
@@ -108,16 +108,21 @@ public class TrominoeModel
 	   	}
    }
    
+   public synchronized void incrementFilled() 
+   {
+       filled++;
+   }
+   
    private void findDefSquare()
    {
 	   for( int i = 0; i < myBoard.getBoard().length; i++ )
        {
-       	for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
+       	   for( int j = 0; j < myBoard.getBoard()[i].length; j++ )
            {
-           	if( myBoard.getBoard()[i][j] != 0 )
-           	{
+           	 if( myBoard.getBoard()[i][j] != 0 )
+           	 {
            		myBoard.setDefSquare(i, j);
-           	}
+             }
            }
         }
    }
