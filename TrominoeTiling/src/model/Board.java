@@ -24,7 +24,7 @@ public class Board
    public void setDefSquare( int x, int y )
    {
  	   myDefSquare.setCoorinates(x, y);
- 	   myBoard[myDefSquare.getXCoordinate()][myDefSquare.getYCoordinate()] = -1;
+ 	  
    }
    
    public DeficientSquare getDeficientSquare()
