@@ -4,12 +4,16 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+
 import controller.TrominoeController;
 
 public class TrominoeView extends JFrame 
@@ -18,6 +22,7 @@ public class TrominoeView extends JFrame
    private Container myContainer;
    private TrominoeController myController;
    private JPanel myBoardPanel, myStatsPanel;
+   private JButton[][] myBoardButtons;
    private static final long serialVersionUID = 1L;
 
    public TrominoeView( TrominoeController controller )
@@ -48,7 +53,7 @@ public class TrominoeView extends JFrame
 			                                 0,0));
 	   myContainer.add(myBoardPanel);
 	   
-	   JButton[][] myBoardButtons = new JButton[myController.getBoardSize()]
+	   myBoardButtons = new JButton[myController.getBoardSize()]
 			   								   [myController.getBoardSize()];
 	  
 	   LineBorder lnBorder = new LineBorder(Color.black, 1);
@@ -78,13 +83,49 @@ public class TrominoeView extends JFrame
         myStatsPanel.setBorder(title);
         
         JButton runButton = new JButton("Tile Board");
-        JButton refreshButton = new JButton("Refresh Board");
         runButton.setBounds(250, 460, 160, 30);
-        refreshButton.setBounds(420, 460, 160, 30);
         myContainer.add(runButton);
+        runButton.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                myController.tileBoard();
+                updateView();
+            }
+        });      
+        
+        JButton refreshButton = new JButton("Set New Size");
+        refreshButton.setBounds(420, 460, 160, 30);
         myContainer.add(refreshButton);
+        refreshButton.addActionListener(new ActionListener() 
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                myController.resetBoardSize();
+            }
+        });  
         
 		updateView();
+   }
+   
+   public void displayBoard(int[][] board)
+   {
+	   for( int i = 0; i < board.length; i++)
+	   {
+		   for( int j = 0; j < board[i].length; j++)
+		   {
+			   System.out.println("[" +  i + "]" + "[" + j  + "]" + "  = " + board[i][j]);
+               myBoardButtons[i][j].setOpaque(true);
+			   if( board[i][j] == -1)
+			   {
+				  myBoardButtons[i][j].setBackground(Color.black);
+			   }
+			   else
+			   {
+			      myBoardButtons[i][j].setBackground(Color.red);
+			   }
+		   }
+	   }
    }
    
    public void updateView()
