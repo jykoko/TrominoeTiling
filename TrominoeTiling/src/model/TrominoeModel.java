@@ -12,7 +12,6 @@ public class TrominoeModel
 	   myBoard = board;
 	   myBoard.getBoard()[myBoard.getDeficientSquare().getXCoordinate()]
 			   			 [myBoard.getDeficientSquare().getYCoordinate()] = -1;
-	   
    }
    
    public void tileBoard()
@@ -96,7 +95,6 @@ public class TrominoeModel
         	  tile( halfOfBoardLength, originX, originY); // upper left
        	   	  tile( halfOfBoardLength, originX + halfOfBoardLength, originY + halfOfBoardLength); // lower right 
        	      tile( halfOfBoardLength, originX , originY + halfOfBoardLength); // lower left
-
            }
            else //lower right
            {
@@ -123,8 +121,10 @@ public class TrominoeModel
    
    private void findDefSquare( int gridSize , int originX, int originY)
    {
-	   System.out.println( "originX:" + originX + "originY: " + originY);
-	   for( int i = 0; i <  originX + gridSize; i++ )
+
+	   myXLoc = originX;
+	   myYLoc = originY;
+	   for( int i = 0; i < originX + gridSize; i++ )
        {
        	   for( int j = 0; j < originY + gridSize; j++ )
            {
