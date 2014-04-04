@@ -15,10 +15,10 @@ public class TrominoeController
        int boardSize = Integer.parseInt(input);
        
        String defSquareX = JOptionPane.showInputDialog(null, "Enter an x value:");
-       int x = Integer.parseInt(defSquareX);
+       int defX = Integer.parseInt(defSquareX);
        String defSquareY = JOptionPane.showInputDialog(null, "Enter an y value:");
-       int y = Integer.parseInt(defSquareY);
-       myModel = new TrominoeModel(boardSize, x, y);
+       int defY = Integer.parseInt(defSquareY);
+       myModel = new TrominoeModel(boardSize, defX, defY);
        
  	   myView = new TrominoeView(this);
  	   System.out.println("GUI started, program is running.");
