@@ -26,16 +26,12 @@ public class TrominoeView extends JFrame
    private TrominoeController myController;
    private JPanel myBoardPanel, myStatsPanel;
    private JButton[][] myBoardButtons;
-   private int myCurrentNum = 1, myNumbTrominoes;
-   private Color myColor;
    private static final long serialVersionUID = 1L;
 
    public TrominoeView( TrominoeController controller )
    {
 	  myController = controller;
 	  displayInterface();
-	  myColor = Color.red;
-	  myNumbTrominoes = 21;
    }
    
    public void displayInterface()
@@ -75,7 +71,7 @@ public class TrominoeView extends JFrame
 			   myBoardPanel.add(myBoardButtons[i][j]);
 			 }
 		}
-	   
+	  
 	    myStatsPanel = new JPanel();
 	    myStatsPanel.setSize(250,250);
 	    myStatsPanel.setVisible(true);
@@ -123,24 +119,7 @@ public class TrominoeView extends JFrame
    {
 	   
    }
-   
-   Color getRandomColor()
-   {
-	   Color[] colors = {Color.magenta, Color.orange, Color.green, Color.cyan, Color.pink};
-	   Random rand = new Random();
-	   int numb = rand.nextInt(5);
-	   myColor = colors[numb];
-	   return myColor;
-   }
-   
-   public void getCurrentNumb()
-   {
-	   if(myCurrentNum <= myNumbTrominoes)
-	   {
-		   myCurrentNum++;
-	   }
-   }
-   
+  
    public void updateView()
    {
 	   myMainView.validate();
