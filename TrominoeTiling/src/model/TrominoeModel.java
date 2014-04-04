@@ -40,20 +40,20 @@ public class TrominoeModel
 		}
 		else 
 		{
-			int savex=originX, savey=originY;
+			int defX=originX, defY=originY;
 			for (int x=originX; x<originX+size; x++) 
 			{
 				for (int y=originY; y<originY+size; y++)
 				{
 					if (myBoardArray[x][y] != 0) 
 					{
-						savex = x;
-						savey = y;
+						defX = x;
+						defY = y;
 					}
 				}
 			}
 				
-			if (savex < originX + size/2 && savey < originY + size/2) 
+			if (defX < originX + size/2 && defY < originY + size/2) 
 			{
 				tileRec(size/2, originX, originY);
 				
@@ -67,7 +67,7 @@ public class TrominoeModel
 				tileRec(size/2, originX+size/2, originY);
 				tileRec(size/2, originX+size/2, originY+size/2);	
 			}
-			else if (savex < originX + size/2 && savey >= originY + size/2) 
+			else if (defX < originX + size/2 && defY >= originY + size/2) 
 			{
 				tileRec(size/2, originX, originY+size/2);
 				
@@ -81,7 +81,7 @@ public class TrominoeModel
 				tileRec(size/2, originX+size/2, originY);
 				tileRec(size/2, originX+size/2, originY+size/2);
 			}
-			else if (savex >= originX + size/2 && savey < originY + size/2) 
+			else if (defX >= originX + size/2 && defY < originY + size/2) 
 			{
 				tileRec(size/2, originX+size/2, originY);
 				
