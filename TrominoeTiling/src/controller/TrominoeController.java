@@ -1,7 +1,6 @@
 package controller;
 
 import javax.swing.JOptionPane;
-import model.Board;
 import model.TrominoeModel;
 import view.TrominoeView;
 
@@ -28,7 +27,7 @@ public class TrominoeController
    public void tileBoard()
    {
 	   myModel.tile();
- 	   myModel.print();
+ 	   myModel.getBoard().printBoard();
  	   displayBoardToInterface();
    }
    

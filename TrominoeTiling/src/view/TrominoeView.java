@@ -7,8 +7,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -117,9 +115,37 @@ public class TrominoeView extends JFrame
    
    public void displayBoard(int[][] board)
    {
-	   
+	   for ( int i = 0; i < board.length; i ++)
+		   for( int j = 0; j < board[i].length; j++)
+		   {
+	           myBoardButtons[i][j].setOpaque(true);
+			   if( board[i][j] == -1)
+			   {
+				  myBoardButtons[i][j].setBackground(Color.black);
+			   }
+			   else if(board[i][j] % 3 == 0)
+			   {
+			      myBoardButtons[i][j].setBackground(Color.red);
+			   }
+			   else if(board[i][j] % 4 == 0)
+			   {
+			      myBoardButtons[i][j].setBackground(Color.orange);
+			   }
+			   else if(board[i][j] % 5 == 0)
+			   {
+				   myBoardButtons[i][j].setBackground(Color.MAGENTA);
+			   }
+			   else if(board[i][j] % 7 == 0)
+			   {
+				   myBoardButtons[i][j].setBackground(Color.BLUE);
+			   }
+			   else
+			   {
+				   myBoardButtons[i][j].setBackground(Color.cyan);
+			   }
+		   }
    }
-  
+
    public void updateView()
    {
 	   myMainView.validate();

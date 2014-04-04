@@ -129,6 +129,11 @@ public class TrominoeModel
 		} 
 	} 
 	
+	public Board getBoard()
+	{
+		return board;
+	}
+	
 	public int[][] getgrid()
 	{
 		return grid;
