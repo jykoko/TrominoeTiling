@@ -120,9 +120,21 @@ public class TrominoeView extends JFrame
 			   {
 				  myBoardButtons[i][j].setBackground(Color.black);
 			   }
+			   else if(board[i][j] % 3 == 0)
+			   {
+			      myBoardButtons[i][j].setBackground(Color.green);
+			   }
+			   else if(board[i][j] % 4 == 0)
+			   {
+			      myBoardButtons[i][j].setBackground(Color.orange);
+			   }
+			   else if(board[i][j] % 5 == 0)
+			   {
+				   myBoardButtons[i][j].setBackground(Color.MAGENTA);
+			   }
 			   else
 			   {
-			      myBoardButtons[i][j].setBackground(Color.red);
+				   myBoardButtons[i][j].setBackground(Color.blue);
 			   }
 		   }
 	   }

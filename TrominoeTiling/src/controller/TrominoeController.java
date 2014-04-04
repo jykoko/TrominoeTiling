@@ -16,21 +16,27 @@ public class TrominoeController
        int boardSize = Integer.parseInt(input);
        
        Board board = new Board(boardSize);
-       myModel = new TrominoeModel(board);
+       
+       String defSquareX = JOptionPane.showInputDialog(null, "Enter an x value:");
+       int x = Integer.parseInt(defSquareX);
+       String defSquareY = JOptionPane.showInputDialog(null, "Enter an y value:");
+       int y = Integer.parseInt(defSquareY);
+       
+       myModel = new TrominoeModel(boardSize, x, y);
  	   myView = new TrominoeView(this);
  	   System.out.println("GUI started, program is running.");
    }
    
    public void tileBoard()
    {
-	   myModel.tileBoard();
- 	   myModel.getBoard().printBoard();
+	   myModel.tile();
+ 	   myModel.print();
  	   displayBoardToInterface();
    }
    
    public void displayBoardToInterface()
    {
-	   myView.displayBoard(myModel.getBoard().getBoard());
+	   myView.displayBoard(myModel.getgrid());
    }
    
    public void resetBoardSize()
@@ -41,6 +47,6 @@ public class TrominoeController
    
    public int getBoardSize()
    {
-	   return myModel.getBoard().getOriginalBoardSize();
+	   return myModel.getgrid().length;
    }
 }
