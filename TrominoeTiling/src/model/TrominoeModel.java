@@ -13,7 +13,6 @@ public class TrominoeModel
 		board = new Board(size);
 		grid = board.getBoard();
 		currentNum = 1;
-		
 		defSquare = new DeficientSquare(x,y);
 		grid[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
 	}
