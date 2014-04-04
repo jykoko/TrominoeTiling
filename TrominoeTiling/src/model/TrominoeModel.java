@@ -10,9 +10,9 @@ public class TrominoeModel
 
 	public TrominoeModel(int size, int x, int y) 
 	{	
+		currentNum = 1;
 		board = new Board(size);
 		grid = board.getBoard();
-		currentNum = 1;
 		defSquare = new DeficientSquare(x,y);
 		grid[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
 	}
@@ -36,13 +36,11 @@ public class TrominoeModel
 					}
 				}
 			}
-	
-			currentNum++;
+			advanceToNextTrominoe();
 		}
 		else 
 		{
 			int savex=topx, savey=topy;
-			
 			for (int x=topx; x<topx+size; x++) 
 			{
 				for (int y=topy; y<topy+size; y++)
@@ -63,7 +61,7 @@ public class TrominoeModel
 				grid[topx+size/2][topy+size/2] = currentNum;
 				grid[topx+size/2-1][topy+size/2] = currentNum;
 				
-				currentNum++;
+				advanceToNextTrominoe();
 				
 				tileRec(size/2, topx, topy+size/2);
 				tileRec(size/2, topx+size/2, topy);
@@ -77,7 +75,7 @@ public class TrominoeModel
 				grid[topx+size/2][topy+size/2] = currentNum;
 				grid[topx+size/2-1][topy+size/2-1] = currentNum;
 				
-				currentNum++;
+				advanceToNextTrominoe();
 				
 				tileRec(size/2, topx, topy);
 				tileRec(size/2, topx+size/2, topy);
@@ -91,7 +89,7 @@ public class TrominoeModel
 				grid[topx+size/2][topy+size/2] = currentNum;
 				grid[topx+size/2-1][topy+size/2-1] = currentNum;
 				
-				currentNum++;
+				advanceToNextTrominoe();
 				
 				tileRec(size/2, topx, topy);
 				tileRec(size/2, topx, topy+size/2);
@@ -105,7 +103,7 @@ public class TrominoeModel
 				grid[topx+size/2][topy+size/2-1] = currentNum;
 				grid[topx+size/2-1][topy+size/2-1] = currentNum;
 				
-				currentNum++;
+				advanceToNextTrominoe();
 				
 				tileRec(size/2, topx+size/2, topy);
 				tileRec(size/2, topx, topy+size/2);
@@ -113,6 +111,11 @@ public class TrominoeModel
 			}
 		} 
 	} 
+	
+	public void advanceToNextTrominoe()
+	{
+		currentNum++;
+	}
 	
 	public Board getBoard()
 	{
