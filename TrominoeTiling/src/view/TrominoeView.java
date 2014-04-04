@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import java.util.Random;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -24,12 +26,16 @@ public class TrominoeView extends JFrame
    private TrominoeController myController;
    private JPanel myBoardPanel, myStatsPanel;
    private JButton[][] myBoardButtons;
+   private int myCurrentNum = 1, myNumbTrominoes;
+   private Color myColor;
    private static final long serialVersionUID = 1L;
 
    public TrominoeView( TrominoeController controller )
    {
 	  myController = controller;
 	  displayInterface();
+	  myColor = Color.red;
+	  myNumbTrominoes = 21;
    }
    
    public void displayInterface()
@@ -50,12 +56,10 @@ public class TrominoeView extends JFrame
 	   myBoardPanel.setBounds( 150,130,500,300 );
 	   myBoardPanel.setBackground(Color.WHITE);
 	   myBoardPanel.setLayout(new GridLayout(myController.getBoardSize(),
-			                                 myController.getBoardSize(),
-			                                 0,0));
+			                                 myController.getBoardSize(),0,0));
 	   myContainer.add(myBoardPanel);
-	   
 	   myBoardButtons = new JButton[myController.getBoardSize()]
-			   								   [myController.getBoardSize()];
+			   					   [myController.getBoardSize()];
 	  
 	   LineBorder lnBorder = new LineBorder(Color.black, 1);
 	   for(int i = 0; i < myBoardButtons.length; i++)
@@ -77,7 +81,13 @@ public class TrominoeView extends JFrame
 	    myStatsPanel.setVisible(true);
 	    myStatsPanel.setBounds( 600,20,180,100 );
 	    myStatsPanel.setBackground(Color.WHITE);
+	    myStatsPanel.setLayout(new FlowLayout());
 	    myContainer.add(myStatsPanel);
+	    
+	    JLabel defSquareLabel = new JLabel("Deficient Square: Not Set");
+	    JLabel numbItersLabel = new JLabel("Number Iterations: 0");
+	    myStatsPanel.add(defSquareLabel);
+	    myStatsPanel.add(numbItersLabel);
 	    
 		TitledBorder title = BorderFactory.createTitledBorder("Stats");
         title.setTitleJustification(TitledBorder.CENTER);
@@ -111,7 +121,21 @@ public class TrominoeView extends JFrame
    
    public void displayBoard(int[][] board)
    {
-	   for( int i = 0; i < board.length; i++)
+	   
+   }
+   
+   Color getRandomColor()
+   {
+	   Color[] colors = {Color.magenta, Color.orange, Color.green, Color.cyan, Color.pink};
+	   Random rand = new Random();
+	   int numb = rand.nextInt(5);
+	   myColor = colors[numb];
+	   return myColor;
+   }
+   
+   public void getCurrentNumb()
+   {
+	   if(myCurrentNum <= myNumbTrominoes)
 	   {
 		   for( int j = 0; j < board[i].length; j++)
 		   {
