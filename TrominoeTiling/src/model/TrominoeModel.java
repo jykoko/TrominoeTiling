@@ -2,8 +2,8 @@ package model;
 
 public class TrominoeModel 
 {
-	private Board board;
-	private int[][] grid;
+	private Board myBoard;
+	private int[][] myBoardArray;
 	private DeficientSquare defSquare;
 	private int currentNum;
 	
@@ -11,15 +11,15 @@ public class TrominoeModel
 	public TrominoeModel(int size, int x, int y) 
 	{	
 		currentNum = 1;
-		board = new Board(size);
-		grid = board.getBoard();
+		myBoard = new Board(size);
+		myBoardArray = myBoard.getBoard();
 		defSquare = new DeficientSquare(x,y);
-		grid[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
+		myBoardArray[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
 	}
 	
 	public void tile() 
 	{
-		tileRec(grid.length, 0, 0);
+		tileRec(myBoardArray.length, 0, 0);
 	}
 	
 	private void tileRec(int size, int topx, int topy) 
@@ -30,9 +30,9 @@ public class TrominoeModel
 			{
 				for (int j=0; j<size; j++)
 				{
-					if (grid[topx+i][topy+j] == 0)
+					if (myBoardArray[topx+i][topy+j] == 0)
 					{
-						grid[topx+i][topy+j] = currentNum;
+						myBoardArray[topx+i][topy+j] = currentNum;
 					}
 				}
 			}
@@ -45,7 +45,7 @@ public class TrominoeModel
 			{
 				for (int y=topy; y<topy+size; y++)
 				{
-					if (grid[x][y] != 0) 
+					if (myBoardArray[x][y] != 0) 
 					{
 						savex = x;
 						savey = y;
@@ -57,9 +57,9 @@ public class TrominoeModel
 			{
 				tileRec(size/2, topx, topy);
 				
-				grid[topx+size/2][topy+size/2-1] = currentNum;
-				grid[topx+size/2][topy+size/2] = currentNum;
-				grid[topx+size/2-1][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2] = currentNum;
 				
 				advanceToNextTrominoe();
 				
@@ -71,9 +71,9 @@ public class TrominoeModel
 			{
 				tileRec(size/2, topx, topy+size/2);
 				
-				grid[topx+size/2][topy+size/2-1] = currentNum;
-				grid[topx+size/2][topy+size/2] = currentNum;
-				grid[topx+size/2-1][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
@@ -85,9 +85,9 @@ public class TrominoeModel
 			{
 				tileRec(size/2, topx+size/2, topy);
 				
-				grid[topx+size/2-1][topy+size/2] = currentNum;
-				grid[topx+size/2][topy+size/2] = currentNum;
-				grid[topx+size/2-1][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
@@ -99,9 +99,9 @@ public class TrominoeModel
 			{
 				tileRec(size/2, topx+size/2, topy+size/2);
 				
-				grid[topx+size/2-1][topy+size/2] = currentNum;
-				grid[topx+size/2][topy+size/2-1] = currentNum;
-				grid[topx+size/2-1][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2] = currentNum;
+				myBoardArray[topx+size/2][topy+size/2-1] = currentNum;
+				myBoardArray[topx+size/2-1][topy+size/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
@@ -119,11 +119,11 @@ public class TrominoeModel
 	
 	public Board getBoard()
 	{
-		return board;
+		return myBoard;
 	}
 	
 	public int[][] getgrid()
 	{
-		return grid;
+		return myBoardArray;
 	}
 }
