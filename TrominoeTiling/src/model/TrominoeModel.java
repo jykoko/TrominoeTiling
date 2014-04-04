@@ -1,30 +1,21 @@
 package model;
 
-public class TrominoeModel {
-	
+public class TrominoeModel 
+{
+	private Board board;
 	private int[][] grid;
+	private DeficientSquare defSquare;
 	private int currentNum;
 	
-	// Pre-condition: size must be a perfect power of 2 and 0<=x<size, 0<=y<size
-	// Post-condition: creates an empty tromino object with dimensions size x size.
+
 	public TrominoeModel(int size, int x, int y) 
-	{
-		int actualsize = 1;
-		while (actualsize < size) actualsize*=2;
-		
-		// Make sure the grid size is a perfect power of 2.
-		grid = new int[actualsize][actualsize];
+	{	
+		board = new Board(size);
+		grid = board.getBoard();
 		currentNum = 1;
 		
-		// Fill in the grid with all empty squares.
-		for (int i=0; i<actualsize; i++) {
-			for (int j=0; j<actualsize; j++) {
-				grid[i][j] = 0;
-			}
-		}
-		
-		// This represents the original hole in the tromino.
-		grid[x][y] = -1;
+		defSquare = new DeficientSquare(x,y);
+		grid[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
 	}
 	
 	// Wrapper call for recursive method.

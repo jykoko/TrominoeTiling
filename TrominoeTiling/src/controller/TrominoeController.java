@@ -15,14 +15,12 @@ public class TrominoeController
 	   String input = JOptionPane.showInputDialog(null, "How many squares would you like in the grid? (N x N)");
        int boardSize = Integer.parseInt(input);
        
-       Board board = new Board(boardSize);
-       
        String defSquareX = JOptionPane.showInputDialog(null, "Enter an x value:");
        int x = Integer.parseInt(defSquareX);
        String defSquareY = JOptionPane.showInputDialog(null, "Enter an y value:");
        int y = Integer.parseInt(defSquareY);
-       
        myModel = new TrominoeModel(boardSize, x, y);
+       
  	   myView = new TrominoeView(this);
  	   System.out.println("GUI started, program is running.");
    }
@@ -43,6 +41,11 @@ public class TrominoeController
    {
 	   myView.killCurrentWindow();
 	   new TrominoeController();
+   }
+   
+   public int[][] getBoard()
+   {
+	   return myModel.getgrid();
    }
    
    public int getBoardSize()
