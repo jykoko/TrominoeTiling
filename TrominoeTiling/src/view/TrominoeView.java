@@ -115,7 +115,8 @@ public class TrominoeView extends JFrame
    
    public void displayBoard(int[][] board)
    {
-	   for ( int i = 0; i < board.length; i ++)
+	   for (int i = 0; i < board.length; i ++)
+	   {
 		   for( int j = 0; j < board[i].length; j++)
 		   {
 	           myBoardButtons[i][j].setOpaque(true);
@@ -144,6 +145,7 @@ public class TrominoeView extends JFrame
 				   myBoardButtons[i][j].setBackground(Color.cyan);
 			   }
 		   }
+	   }
    }
 
    public void updateView()

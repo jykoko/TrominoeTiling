@@ -6,7 +6,6 @@ public class TrominoeModel
 	private int[][] myBoardArray;
 	private DeficientSquare defSquare;
 	private int currentNum;
-	
 
 	public TrominoeModel(int size, int x, int y) 
 	{	
