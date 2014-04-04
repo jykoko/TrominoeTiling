@@ -121,25 +121,10 @@ public class TrominoeView extends JFrame
    
    public void displayBoard(int[][] board)
    {
-	   
-   }
-   
-   Color getRandomColor()
-   {
-	   Color[] colors = {Color.magenta, Color.orange, Color.green, Color.cyan, Color.pink};
-	   Random rand = new Random();
-	   int numb = rand.nextInt(5);
-	   myColor = colors[numb];
-	   return myColor;
-   }
-   
-   public void getCurrentNumb()
-   {
-	   if(myCurrentNum <= myNumbTrominoes)
-	   {
+	   for ( int i = 0; i < board.length; i ++)
 		   for( int j = 0; j < board[i].length; j++)
 		   {
-               myBoardButtons[i][j].setOpaque(true);
+	           myBoardButtons[i][j].setOpaque(true);
 			   if( board[i][j] == -1)
 			   {
 				  myBoardButtons[i][j].setBackground(Color.black);
@@ -165,8 +150,17 @@ public class TrominoeView extends JFrame
 				   myBoardButtons[i][j].setBackground(Color.cyan);
 			   }
 		   }
-	   }
    }
+   
+//   Color getRandomColor()
+//   {
+//	   Color[] colors = {Color.magenta, Color.orange, Color.green, Color.cyan, Color.pink};
+//	   Random rand = new Random();
+//	   int numb = rand.nextInt(5);
+//	   myColor = colors[numb];
+//	   return myColor;
+//   }
+   
    
    public void updateView()
    {
