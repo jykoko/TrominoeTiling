@@ -147,6 +147,11 @@ public class TrominoeModel {
 	
 	
 	// Prints out the current object.
+	
+	public void findDefSquare()
+	{
+		
+	}
 	public void print() {
 		
 		for (int i=0; i<grid.length; i++) {

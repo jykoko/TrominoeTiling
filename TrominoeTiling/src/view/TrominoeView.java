@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -114,7 +115,6 @@ public class TrominoeView extends JFrame
 	   {
 		   for( int j = 0; j < board[i].length; j++)
 		   {
-			   System.out.println("[" +  i + "]" + "[" + j  + "]" + "  = " + board[i][j]);
                myBoardButtons[i][j].setOpaque(true);
 			   if( board[i][j] == -1)
 			   {
@@ -122,7 +122,7 @@ public class TrominoeView extends JFrame
 			   }
 			   else if(board[i][j] % 3 == 0)
 			   {
-			      myBoardButtons[i][j].setBackground(Color.green);
+			      myBoardButtons[i][j].setBackground(Color.red);
 			   }
 			   else if(board[i][j] % 4 == 0)
 			   {
@@ -132,9 +132,13 @@ public class TrominoeView extends JFrame
 			   {
 				   myBoardButtons[i][j].setBackground(Color.MAGENTA);
 			   }
+			   else if(board[i][j] % 7 == 0)
+			   {
+				   myBoardButtons[i][j].setBackground(Color.BLUE);
+			   }
 			   else
 			   {
-				   myBoardButtons[i][j].setBackground(Color.blue);
+				   myBoardButtons[i][j].setBackground(Color.cyan);
 			   }
 		   }
 	   }
