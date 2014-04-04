@@ -7,10 +7,10 @@ public class TrominoeModel
 	private DeficientSquare defSquare;
 	private int currentNum;
 
-	public TrominoeModel(int size, int x, int y) 
+	public TrominoeModel(int boardLength, int x, int y) 
 	{	
 		currentNum = 1;
-		myBoard = new Board(size);
+		myBoard = new Board(boardLength);
 		myBoardArray = myBoard.getBoard();
 		defSquare = new DeficientSquare(x,y);
 		myBoardArray[defSquare.getXCoordinate()][defSquare.getYCoordinate()] = -1;
@@ -21,13 +21,13 @@ public class TrominoeModel
 		tileRec(myBoardArray.length, 0, 0);
 	}
 	
-	private void tileRec(int size, int originX, int originY) 
+	private void tileRec(int boardLength, int originX, int originY) 
 	{
-		if (size == 2) 
+		if (boardLength == 2) 
 		{
-			for (int i=0; i<size; i++) 
+			for (int i=0; i<boardLength; i++) 
 			{
-				for (int j=0; j<size; j++)
+				for (int j=0; j<boardLength; j++)
 				{
 					if (myBoardArray[originX+i][originY+j] == 0)
 					{
@@ -40,9 +40,9 @@ public class TrominoeModel
 		else 
 		{
 			int defX=originX, defY=originY;
-			for (int x=originX; x<originX+size; x++) 
+			for (int x=originX; x<originX+boardLength; x++) 
 			{
-				for (int y=originY; y<originY+size; y++)
+				for (int y=originY; y<originY+boardLength; y++)
 				{
 					if (myBoardArray[x][y] != 0) 
 					{
@@ -52,61 +52,61 @@ public class TrominoeModel
 				}
 			}
 				
-			if (defX < originX + size/2 && defY < originY + size/2) 
+			if (defX < originX + boardLength/2 && defY < originY + boardLength/2) 
 			{
-				tileRec(size/2, originX, originY);
+				tileRec(boardLength/2, originX, originY);
 				
-				myBoardArray[originX+size/2][originY+size/2-1] = currentNum;
-				myBoardArray[originX+size/2][originY+size/2] = currentNum;
-				myBoardArray[originX+size/2-1][originY+size/2] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2] = currentNum;
 				
 				advanceToNextTrominoe();
 				
-				tileRec(size/2, originX, originY+size/2);
-				tileRec(size/2, originX+size/2, originY);
-				tileRec(size/2, originX+size/2, originY+size/2);	
+				tileRec(boardLength/2, originX, originY+boardLength/2);
+				tileRec(boardLength/2, originX+boardLength/2, originY);
+				tileRec(boardLength/2, originX+boardLength/2, originY+boardLength/2);	
 			}
-			else if (defX < originX + size/2 && defY >= originY + size/2) 
+			else if (defX < originX + boardLength/2 && defY >= originY + boardLength/2) 
 			{
-				tileRec(size/2, originX, originY+size/2);
+				tileRec(boardLength/2, originX, originY+boardLength/2);
 				
-				myBoardArray[originX+size/2][originY+size/2-1] = currentNum;
-				myBoardArray[originX+size/2][originY+size/2] = currentNum;
-				myBoardArray[originX+size/2-1][originY+size/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
-				tileRec(size/2, originX, originY);
-				tileRec(size/2, originX+size/2, originY);
-				tileRec(size/2, originX+size/2, originY+size/2);
+				tileRec(boardLength/2, originX, originY);
+				tileRec(boardLength/2, originX+boardLength/2, originY);
+				tileRec(boardLength/2, originX+boardLength/2, originY+boardLength/2);
 			}
-			else if (defX >= originX + size/2 && defY < originY + size/2) 
+			else if (defX >= originX + boardLength/2 && defY < originY + boardLength/2) 
 			{
-				tileRec(size/2, originX+size/2, originY);
+				tileRec(boardLength/2, originX+boardLength/2, originY);
 				
-				myBoardArray[originX+size/2-1][originY+size/2] = currentNum;
-				myBoardArray[originX+size/2][originY+size/2] = currentNum;
-				myBoardArray[originX+size/2-1][originY+size/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
-				tileRec(size/2, originX, originY);
-				tileRec(size/2, originX, originY+size/2);
-				tileRec(size/2, originX+size/2, originY+size/2);
+				tileRec(boardLength/2, originX, originY);
+				tileRec(boardLength/2, originX, originY+boardLength/2);
+				tileRec(boardLength/2, originX+boardLength/2, originY+boardLength/2);
 			}
 			else 
 			{
-				tileRec(size/2, originX+size/2, originY+size/2);
+				tileRec(boardLength/2, originX+boardLength/2, originY+boardLength/2);
 				
-				myBoardArray[originX+size/2-1][originY+size/2] = currentNum;
-				myBoardArray[originX+size/2][originY+size/2-1] = currentNum;
-				myBoardArray[originX+size/2-1][originY+size/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2] = currentNum;
+				myBoardArray[originX+boardLength/2][originY+boardLength/2-1] = currentNum;
+				myBoardArray[originX+boardLength/2-1][originY+boardLength/2-1] = currentNum;
 				
 				advanceToNextTrominoe();
 				
-				tileRec(size/2, originX+size/2, originY);
-				tileRec(size/2, originX, originY+size/2);
-				tileRec(size/2, originX, originY);
+				tileRec(boardLength/2, originX+boardLength/2, originY);
+				tileRec(boardLength/2, originX, originY+boardLength/2);
+				tileRec(boardLength/2, originX, originY);
 			}
 		} 
 	} 
