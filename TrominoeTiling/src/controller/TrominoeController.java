@@ -39,7 +39,7 @@ public class TrominoeController
    
    public void displayBoardToInterface()
    {
-	   myView.displayBoard(myModel.getgrid());
+	   myView.displayBoard(myModel.getBoardArray());
    }
    
    public void resetBoardSize()
@@ -50,11 +50,11 @@ public class TrominoeController
    
    public int[][] getBoard()
    {
-	   return myModel.getgrid();
+	   return myModel.getBoardArray();
    }
    
    public int getBoardSize()
    {
-	   return myModel.getgrid().length;
+	   return myModel.getBoardArray().length;
    }
 }

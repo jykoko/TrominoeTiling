@@ -122,7 +122,7 @@ public class TrominoeModel
 		return myBoard;
 	}
 	
-	public int[][] getgrid()
+	public int[][] getBoardArray()
 	{
 		return myBoardArray;
 	}
