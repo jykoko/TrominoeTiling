@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
-
 import controller.TrominoeController;
 
 public class TrominoeView extends JFrame 
@@ -23,6 +21,7 @@ public class TrominoeView extends JFrame
    private Container myContainer;
    private TrominoeController myController;
    private JPanel myBoardPanel, myStatsPanel;
+   private JLabel myNumbItersLbl, myDefSquareLocationLbl;
    private JButton[][] myBoardButtons;
    private static final long serialVersionUID = 1L;
 
@@ -75,12 +74,21 @@ public class TrominoeView extends JFrame
 	    myStatsPanel.setVisible(true);
 	    myStatsPanel.setBounds( 600,20,180,100 );
 	    myStatsPanel.setBackground(Color.WHITE);
-	    myStatsPanel.setLayout(new FlowLayout());
+	    myStatsPanel.setLayout(null);
 	    myContainer.add(myStatsPanel);
 	    
-	    JLabel defSquareLabel = new JLabel("Deficient Square: Not Set");
-	    JLabel numbItersLabel = new JLabel("Number Iterations: 0");
+	    JLabel defSquareLabel = new JLabel("Def Square: ");
+	    defSquareLabel.setBounds(10, 20, 80, 20);
+	    myDefSquareLocationLbl = new JLabel("( x , y )");
+	    myDefSquareLocationLbl.setBounds(90, 20, 80, 20);
+	    myStatsPanel.add(myDefSquareLocationLbl);
 	    myStatsPanel.add(defSquareLabel);
+	    
+	    JLabel numbItersLabel = new JLabel("Iterations: ");
+	    numbItersLabel.setBounds(10, 60, 80, 20);
+	    myNumbItersLbl = new JLabel("0");
+	    myNumbItersLbl.setBounds(90, 60, 80, 20);
+	    myStatsPanel.add(myNumbItersLbl);
 	    myStatsPanel.add(numbItersLabel);
 	    
 		TitledBorder title = BorderFactory.createTitledBorder("Stats");
@@ -115,6 +123,7 @@ public class TrominoeView extends JFrame
    
    public void displayBoard(int[][] board)
    {
+	   myBoardPanel.setBackground(Color.BLACK);
 	   for (int i = 0; i < board.length; i ++)
 	   {
 		   for( int j = 0; j < board[i].length; j++)
@@ -146,6 +155,18 @@ public class TrominoeView extends JFrame
 			   }
 		   }
 	   }
+   }
+   
+   public void setIterationsLabel( String label )
+   {
+	   myNumbItersLbl.setText(label);
+	   updateView();
+   }
+   
+   public void setDefSquareLabel( String label )
+   {
+	   myDefSquareLocationLbl.setText(label);
+	   updateView();
    }
 
    public void updateView()

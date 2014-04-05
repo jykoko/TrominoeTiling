@@ -26,9 +26,15 @@ public class TrominoeController
    
    public void tileBoard()
    {
-	   myModel.tile();
+	   myModel.tileBoard();
  	   myModel.getBoard().printBoard();
  	   displayBoardToInterface();
+ 	   
+ 	   String defSquareOutput = "(" + myModel.getDefSquare().getXCoordinate() + " , " + myModel.getDefSquare().getYCoordinate() + ")";
+ 	   String iterationOutput = myModel.getNumbIterations() + "";
+ 	  
+ 	   myView.setDefSquareLabel(defSquareOutput);
+ 	   myView.setIterationsLabel(iterationOutput);
    }
    
    public void displayBoardToInterface()
