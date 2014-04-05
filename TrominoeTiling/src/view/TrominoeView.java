@@ -129,30 +129,7 @@ public class TrominoeView extends JFrame
 		   for( int j = 0; j < board[i].length; j++)
 		   {
 	           myBoardButtons[i][j].setOpaque(true);
-			   if( board[i][j] == -1)
-			   {
-				  myBoardButtons[i][j].setBackground(Color.black);
-			   }
-			   else if(board[i][j] % 3 == 0)
-			   {
-			      myBoardButtons[i][j].setBackground(Color.red);
-			   }
-			   else if(board[i][j] % 4 == 0)
-			   {
-			      myBoardButtons[i][j].setBackground(Color.orange);
-			   }
-			   else if(board[i][j] % 5 == 0)
-			   {
-				   myBoardButtons[i][j].setBackground(Color.MAGENTA);
-			   }
-			   else if(board[i][j] % 7 == 0)
-			   {
-				   myBoardButtons[i][j].setBackground(Color.BLUE);
-			   }
-			   else
-			   {
-				   myBoardButtons[i][j].setBackground(Color.cyan);
-			   }
+			   myBoardButtons[i][j].setBackground(setNewColor( board[i][j] )); 
 		   }
 	   }
    }
@@ -178,5 +155,33 @@ public class TrominoeView extends JFrame
    public void killCurrentWindow() 
    {
 	  myMainView.dispose();
+   }
+   
+   public Color setNewColor( int n )
+   {
+	   if( n == -1)
+	   {
+		 return Color.black;
+	   }
+	   else if(n % 3 == 0)
+	   {
+		   return Color.pink;
+	   }
+	   else if(n % 4 == 0)
+	   {
+		   return Color.red;
+	   }
+	   else if(n % 5 == 0)
+	   {
+		   return Color.blue;
+	   }
+	   else if(n % 7 == 0)
+	   {
+		   return Color.magenta;
+	   }
+	   else
+	   {
+		   return Color.orange;
+	   }
    }
 }
